@@ -1,0 +1,242 @@
+[
+  {
+    "username": "jhaynes",
+    "password": "scrypt:32768:8:1$bfFiCf3XWjka8FXk$273e5076c8805d76ff2b00a5460191c9b6755275591cd42abaf31f615ebd21989bcfc7691399656993583492467e39dbb7fecdc405ff431b1fdb3c28f0362a17",
+    "fullname": "James Haynes",
+    "full_name": "James Haynes",
+    "account_number": "3928456127",
+    "routing_number": "081000210",
+    "balance": 6792169.0,
+    "email": "h00491856@gmail.com",
+    "date_joined": "2023-07-18",
+    "account_type": "Personal Checking",
+    "status": "Active",
+    "client_tier": "Platinum",
+    "card": {
+      "number": "4532771299012384",
+      "expiry": "09/29",
+      "cvv": "843"
+    },
+    "last_login": "2025-10-23 08:15:35"
+  },
+  {
+    "username": "urbanholdings02",
+    "password": "scrypt:32768:8:1$KVDGfFBJOFZOmGXi$fac175be2b6118a2d9ce928578bfe58a7a3e92f0445bdaf8a5c644f580ff0dc849ceb52fb8892fa45c9b1fac9fbc522dc28dd6bd469d53d03c7a0b71a5d18f46",
+    "fullname": "Urban Holdings Group",
+    "full_name": "Urban Holdings Group",
+    "account_number": "304918274",
+    "routing_number": "021000021",
+    "balance": 7250000.5,
+    "email": "contact@urbanholdings02.com",
+    "date_joined": "2023-03-02",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Corporate",
+    "card": {
+      "number": "3698435479130340",
+      "expiry": "11/28",
+      "cvv": "092"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "zenithcapital02",
+    "password": "scrypt:32768:8:1$KaA7KvHDlSemvHrV$19f89768f7162f6cc3c48befbf6d8a926bcaae0cb50f6190348b18ddd7689fb8678c9030010740191db479a08b7b86615b8597877d85fc0cd29b5f81951bbeea",
+    "fullname": "Zenith Capital Partners",
+    "full_name": "Zenith Capital Partners",
+    "account_number": "849302717",
+    "routing_number": "111000614",
+    "balance": 6132331.75,
+    "email": "ops@zenithcapital02.com",
+    "date_joined": "2023-10-05",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "9230357793889870",
+      "expiry": "04/29",
+      "cvv": "315"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "novaindustries02",
+    "password": "Nova!2023x",
+    "fullname": "Nova Industries Ltd",
+    "full_name": "Nova Industries Ltd",
+    "account_number": "738270194",
+    "routing_number": "053000219",
+    "balance": 5302000.0,
+    "email": "finance@novaindustries02.com",
+    "date_joined": "2023-08-21",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Standard",
+    "card": {
+      "number": "5588810140595901",
+      "expiry": "07/28",
+      "cvv": "472"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "silverline02",
+    "password": "Silver#789",
+    "fullname": "Silverline Global Investments",
+    "full_name": "Silverline Global Investments",
+    "account_number": "894203572",
+    "routing_number": "121000358",
+    "balance": 2615000.0,
+    "email": "hello@silverline02.com",
+    "date_joined": "2023-01-30",
+    "account_type": "Investment Checking",
+    "status": "Active",
+    "client_tier": "Standard",
+    "card": {
+      "number": "7738607171955873",
+      "expiry": "03/30",
+      "cvv": "661"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "larrymattson7",
+    "password": "larryloves1",
+    "fullname": "Larry Mattson",
+    "full_name": "Larry Mattson",
+    "account_number": "874203552",
+    "routing_number": "141001358",
+    "balance": 5615000.0,
+    "email": "mattsonlarry23@gmail.com",
+    "date_joined": "2023-01-30",
+    "account_type": "personal Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "7738607171954873",
+      "expiry": "03/29",
+      "cvv": "561"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "apexinnovations02",
+    "password": "Apex2023$$",
+    "fullname": "Apex Innovations Corporation",
+    "full_name": "Apex Innovations Corporation",
+    "account_number": "507384921",
+    "routing_number": "091000022",
+    "balance": 4989000.25,
+    "email": "accounts@apexinnovations02.com",
+    "date_joined": "2023-05-14",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "0539207005770419",
+      "expiry": "10/29",
+      "cvv": "208"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "empiretrust02",
+    "password": "Empire#2023",
+    "fullname": "Empire Trust Solutions",
+    "full_name": "Empire Trust Solutions",
+    "account_number": "120948376",
+    "routing_number": "026009593",
+    "balance": 117900000.0,
+    "email": "services@empiretrust02.com",
+    "date_joined": "2023-11-09",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Corporate",
+    "card": {
+      "number": "0803780791477879",
+      "expiry": "12/30",
+      "cvv": "104"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "shanebertelli1",
+    "password": "shaneloves12",
+    "fullname": "Shane Loren Bertelli",
+    "full_name": "Shane Loren Bertelli",
+    "account_number": "506384921",
+    "routing_number": "091000122",
+    "balance": 4989000.25,
+    "email": "shaneprada05@gmail.com",
+    "date_joined": "2023-05-14",
+    "account_type": "Personal Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "0439207006770419",
+      "expiry": "10/29",
+      "cvv": "218"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "margaretmoore13",
+    "password": "scrypt:32768:8:1$GrPN0biop4szmDOa$3aff8f0b9b94ad60cd407cf420828a25a9d002d33eb59cd781faa25fb89b19d6759cee48dc283c04f26811436453203a83c6ba20325415aa4d9f7947b2c3c7e9",
+    "fullname": "Margaret Moore",
+    "full_name": "Margaret Moore",
+    "account_number": "418384921",
+    "routing_number": "091022100",
+    "balance": 5103226.02,
+    "email": "mooremar987@outlook.com",
+    "date_joined": "2026-01-07",
+    "account_type": "Personal Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "0434207106770429",
+      "expiry": "10/29",
+      "cvv": "228"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "shane.bertelli",
+    "password": "scrypt:32768:8:1$oG1wIX4Y48ofTMqY$3ae6b1e976151c5280a820197e19d96acd068ca5ecb9ea7dfe33a8433eb93b68b8000b9b20bcaa4c0dc6ccd03409a8248300daa35087049360f164e3bf110b1e",
+    "fullname": "Shane Bertelli",
+    "full_name": "Shane Bertelli",
+    "account_number": "507394921",
+    "routing_number": "081000022",
+    "balance": 4989000.25,
+    "email": "shanebertelli@gmail.com",
+    "date_joined": "2023-05-14",
+    "account_type": "Personal Checking",
+    "status": "Active",
+    "client_tier": "Premium",
+    "card": {
+      "number": "0539207005660419",
+      "expiry": "10/29",
+      "cvv": "206"
+    },
+    "last_login": ""
+  },
+  {
+    "username": "diamondrolex29",
+    "password": "Diamond11",
+    "fullname": "Diamond Bertelli",
+    "full_name": "Diamond Bertelli",
+    "account_number": "736670194",
+    "routing_number": "020000219",
+    "balance": 5302000.0,
+    "email": "diamondrolex29@gmail.com",
+    "date_joined": "2023-08-21",
+    "account_type": "Business Checking",
+    "status": "Active",
+    "client_tier": "Standard",
+    "card": {
+      "number": "5586610140595901",
+      "expiry": "07/28",
+      "cvv": "476"
+    },
+    "last_login": ""
+  }
+]
