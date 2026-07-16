@@ -5,7 +5,7 @@
     "fullname": "James Haynes",
     "full_name": "James Haynes",
     "account_number": "3928456127",
-    "routing_number": "081000210",
+    "routing_number": "123456789",
     "balance": 6792169.0,
     "email": "h00491856@gmail.com",
     "date_joined": "2023-07-18",
@@ -13,9 +13,9 @@
     "status": "Active",
     "client_tier": "Platinum",
     "card": {
-      "number": "4532771299012384",
+      "number": "4111111111111111",
       "expiry": "09/29",
-      "cvv": "843"
+      "cvv": "000"
     },
     "last_login": "2025-10-23 08:15:35"
   },
@@ -25,7 +25,7 @@
     "fullname": "Urban Holdings Group",
     "full_name": "Urban Holdings Group",
     "account_number": "304918274",
-    "routing_number": "021000021",
+    "routing_number": "111111111",
     "balance": 7250000.5,
     "email": "contact@urbanholdings02.com",
     "date_joined": "2023-03-02",
@@ -33,9 +33,9 @@
     "status": "Active",
     "client_tier": "Corporate",
     "card": {
-      "number": "3698435479130340",
+      "number": "4012888888881881",
       "expiry": "11/28",
-      "cvv": "092"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -45,7 +45,7 @@
     "fullname": "Zenith Capital Partners",
     "full_name": "Zenith Capital Partners",
     "account_number": "849302717",
-    "routing_number": "111000614",
+    "routing_number": "222222222",
     "balance": 6132331.75,
     "email": "ops@zenithcapital02.com",
     "date_joined": "2023-10-05",
@@ -53,9 +53,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "9230357793889870",
+      "number": "5555555555554444",
       "expiry": "04/29",
-      "cvv": "315"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -65,7 +65,7 @@
     "fullname": "Nova Industries Ltd",
     "full_name": "Nova Industries Ltd",
     "account_number": "738270194",
-    "routing_number": "053000219",
+    "routing_number": "333333333",
     "balance": 5302000.0,
     "email": "finance@novaindustries02.com",
     "date_joined": "2023-08-21",
@@ -73,9 +73,9 @@
     "status": "Active",
     "client_tier": "Standard",
     "card": {
-      "number": "5588810140595901",
+      "number": "5105105105105100",
       "expiry": "07/28",
-      "cvv": "472"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -85,7 +85,7 @@
     "fullname": "Silverline Global Investments",
     "full_name": "Silverline Global Investments",
     "account_number": "894203572",
-    "routing_number": "121000358",
+    "routing_number": "444444444",
     "balance": 2615000.0,
     "email": "hello@silverline02.com",
     "date_joined": "2023-01-30",
@@ -93,9 +93,9 @@
     "status": "Active",
     "client_tier": "Standard",
     "card": {
-      "number": "7738607171955873",
+      "number": "378282246310005",
       "expiry": "03/30",
-      "cvv": "661"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -105,7 +105,7 @@
     "fullname": "Larry Mattson",
     "full_name": "Larry Mattson",
     "account_number": "874203552",
-    "routing_number": "141001358",
+    "routing_number": "555555555",
     "balance": 5615000.0,
     "email": "mattsonlarry23@gmail.com",
     "date_joined": "2023-01-30",
@@ -113,9 +113,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "7738607171954873",
+      "number": "6011111111111117",
       "expiry": "03/29",
-      "cvv": "561"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -125,7 +125,7 @@
     "fullname": "Apex Innovations Corporation",
     "full_name": "Apex Innovations Corporation",
     "account_number": "507384921",
-    "routing_number": "091000022",
+    "routing_number": "666666666",
     "balance": 4989000.25,
     "email": "accounts@apexinnovations02.com",
     "date_joined": "2023-05-14",
@@ -133,9 +133,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "0539207005770419",
+      "number": "4111111111111111",
       "expiry": "10/29",
-      "cvv": "208"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -145,7 +145,7 @@
     "fullname": "Empire Trust Solutions",
     "full_name": "Empire Trust Solutions",
     "account_number": "120948376",
-    "routing_number": "026009593",
+    "routing_number": "777777777",
     "balance": 117900000.0,
     "email": "services@empiretrust02.com",
     "date_joined": "2023-11-09",
@@ -153,9 +153,9 @@
     "status": "Active",
     "client_tier": "Corporate",
     "card": {
-      "number": "0803780791477879",
+      "number": "4012888888881881",
       "expiry": "12/30",
-      "cvv": "104"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -165,7 +165,7 @@
     "fullname": "Shane Loren Bertelli",
     "full_name": "Shane Loren Bertelli",
     "account_number": "506384921",
-    "routing_number": "091000122",
+    "routing_number": "888888888",
     "balance": 4989000.25,
     "email": "shaneprada05@gmail.com",
     "date_joined": "2023-05-14",
@@ -173,9 +173,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "0439207006770419",
+      "number": "5555555555554444",
       "expiry": "10/29",
-      "cvv": "218"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -185,7 +185,7 @@
     "fullname": "Margaret Moore",
     "full_name": "Margaret Moore",
     "account_number": "418384921",
-    "routing_number": "091022100",
+    "routing_number": "999999999",
     "balance": 5103226.02,
     "email": "mooremar987@outlook.com",
     "date_joined": "2026-01-07",
@@ -193,9 +193,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "0434207106770429",
+      "number": "5105105105105100",
       "expiry": "10/29",
-      "cvv": "228"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -205,7 +205,7 @@
     "fullname": "Shane Bertelli",
     "full_name": "Shane Bertelli",
     "account_number": "507394921",
-    "routing_number": "081000022",
+    "routing_number": "123456789",
     "balance": 4989000.25,
     "email": "shanebertelli@gmail.com",
     "date_joined": "2023-05-14",
@@ -213,9 +213,9 @@
     "status": "Active",
     "client_tier": "Premium",
     "card": {
-      "number": "0539207005660419",
+      "number": "378282246310005",
       "expiry": "10/29",
-      "cvv": "206"
+      "cvv": "000"
     },
     "last_login": ""
   },
@@ -225,7 +225,7 @@
     "fullname": "Diamond Bertelli",
     "full_name": "Diamond Bertelli",
     "account_number": "736670194",
-    "routing_number": "020000219",
+    "routing_number": "111111111",
     "balance": 5302000.0,
     "email": "diamondrolex29@gmail.com",
     "date_joined": "2023-08-21",
@@ -233,9 +233,9 @@
     "status": "Active",
     "client_tier": "Standard",
     "card": {
-      "number": "5586610140595901",
+      "number": "6011111111111117",
       "expiry": "07/28",
-      "cvv": "476"
+      "cvv": "000"
     },
     "last_login": ""
   }

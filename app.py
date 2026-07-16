@@ -1,7 +1,6 @@
 import os
 import json
-import random
-from datetime import datetime, timedelta
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -82,6 +81,71 @@ def account_age_days(user):
     return (datetime.now() - joined).days
 
 # =========================
+# Template globals / errors
+# =========================
+@app.context_processor
+def inject_globals():
+    return {"now_year": datetime.now().year}
+
+
+@app.errorhandler(404)
+def not_found(e):
+    # 404.html shipped in templates/ but was never registered to a handler.
+    return render_template("404.html"), 404
+
+
+def month_key(ts):
+    """'2025-10-26 02:56:27' -> '2025-10'"""
+    return ts[:7]
+
+
+def compute_stats(user, user_tx, months=6):
+    """Money in/out plus a monthly series for the dashboard cards."""
+    uname = user["username"]
+
+    total_in = sum(t["amount"] for t in user_tx if t["to"] == uname)
+    total_out = sum(t["amount"] for t in user_tx if t["from"] == uname)
+
+    # Build the last `months` buckets ending on the most recent activity,
+    # falling back to today when the account has no history yet.
+    if user_tx:
+        latest = max(t["timestamp"] for t in user_tx)[:7]
+        year, mon = int(latest[:4]), int(latest[5:7])
+    else:
+        now = datetime.now()
+        year, mon = now.year, now.month
+
+    buckets = []
+    for _ in range(months):
+        buckets.append("{:04d}-{:02d}".format(year, mon))
+        mon -= 1
+        if mon == 0:
+            mon, year = 12, year - 1
+    buckets.reverse()
+
+    series = []
+    for key in buckets:
+        inflow = sum(t["amount"] for t in user_tx
+                     if t["to"] == uname and month_key(t["timestamp"]) == key)
+        outflow = sum(t["amount"] for t in user_tx
+                      if t["from"] == uname and month_key(t["timestamp"]) == key)
+        series.append({
+            "month": key,
+            "label": key[5:7] + "/" + key[2:4],
+            "in": round(inflow, 2),
+            "out": round(outflow, 2),
+        })
+
+    return {
+        "total_in": total_in,
+        "total_out": total_out,
+        "net": total_in - total_out,
+        "count": len(user_tx),
+        "series": series,
+    }
+
+
+# =========================
 # Routes
 # =========================
 @app.route("/", methods=["GET", "POST"])
@@ -127,8 +191,12 @@ def login():
                 save_json(USERS_FILE, users)
                 flash("Your password has been securely upgraded.", "info")
 
+            # last_login is shown on the account page but was never written.
+            users[index]["last_login"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_json(USERS_FILE, users)
+
             session["username"] = user["username"]
-            flash("Login successful!", "success")
+            flash("Welcome back, {}.".format(user.get("full_name") or user["username"]), "success")
             return redirect(url_for("dashboard"))
 
         flash("Invalid username or password", "danger")
@@ -147,7 +215,6 @@ def dashboard():
 
     user = get_user_by_username(session["username"])
     txs = sanitize_transactions(load_json(TRANSACTIONS_FILE))
-    age_days = account_age_days(user)
 
     join_year = user.get("date_joined", "1900")[:4]
     user_tx = [
@@ -163,6 +230,7 @@ def dashboard():
         "dashboard.html",
         user=user,
         balance_formatted=balance_formatted,
+        stats=compute_stats(user, user_tx),
         transactions=user_tx[:5]
     )
 
@@ -177,7 +245,11 @@ def send():
         recipient_input = request.form.get("recipient", "").strip()
         account_number = request.form.get("account_number", "").strip()
         routing_number = request.form.get("routing_number", "").strip()
-        amount = float(request.form.get("amount", 0))
+        try:
+            amount = float(request.form.get("amount", 0))
+        except (TypeError, ValueError):
+            flash("Enter a valid amount.", "danger")
+            return redirect(url_for("send"))
         purpose = request.form.get("purpose", "")
 
         recipient = get_user_by_username(recipient_input) or get_user_by_account(account_number)
@@ -222,7 +294,6 @@ def transactions():
 
     user = get_user_by_username(session["username"])
     txs = sanitize_transactions(load_json(TRANSACTIONS_FILE))
-    age_days = account_age_days(user)
 
     join_year = user.get("date_joined", "1900")[:4]
     user_tx = [
