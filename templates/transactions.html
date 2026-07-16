@@ -1,248 +1,111 @@
 {% extends 'base.html' %}
-{% block title %}Transactions - Blue Oak Express Bank{% endblock %}
+{% block title %}Transactions — Blue Oak Express Bank{% endblock %}
 
 {% block content %}
-<div class="transactions-page">
-    <section class="header-section">
-        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Blue Oak Express Bank" class="page-logo">
-        <h1>Transaction History</h1>
-        <p class="subtitle">Your complete record of account activity</p>
-        <a href="{{ url_for('dashboard') }}" class="btn-back">← Back to Dashboard</a>
-    </section>
 
-    {% set flagged = transactions | selectattr("status", "equalto", "flagged") | list %}
-    {% set normal = transactions | rejectattr("status", "equalto", "flagged") | list %}
+{% set flagged = transactions | selectattr("status", "equalto", "flagged") | list %}
+{% set normal  = transactions | rejectattr("status", "equalto", "flagged") | list %}
 
-    {% if flagged %}
-    <div class="alert-banner">
-        <strong>⚠ Important:</strong> Some transactions are currently under review for potential fraud.  
-        Please <a href="{{ url_for('contact') }}">contact support</a> for verification.
-    </div>
-    {% endif %}
-
-    <section class="transactions-section">
-        <div class="transactions-card">
-            <h2>Recent Transactions</h2>
-
-            {% if normal %}
-            <div class="table-wrapper">
-                <table class="transactions-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Amount</th>
-                            <th>Purpose</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for t in normal %}
-                        <tr class="{% if t.to == user.username %}credit-row{% else %}debit-row{% endif %}">
-                            <td>{{ t.timestamp }}</td>
-                            <td>{{ t.from }}</td>
-                            <td>{{ t.to }}</td>
-                            <td class="amount">${{ "{:,.2f}".format(t.amount) }}</td>
-                            <td>{{ t.purpose }}</td>
-                            <td><span class="badge credit">Completed</span></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <p class="no-transactions">No completed transactions found.</p>
-            {% endif %}
-        </div>
-
-        {% if flagged %}
-        <div class="transactions-card flagged-section">
-            <h2>⚠ Pending / Flagged Transactions</h2>
-            <p class="flagged-note">These transactions are being reviewed for security reasons. Our support team will reach out if verification is required.</p>
-
-            <div class="table-wrapper">
-                <table class="transactions-table flagged">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Amount</th>
-                            <th>Purpose</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for t in flagged %}
-                        <tr class="flagged-row">
-                            <td>{{ t.timestamp }}</td>
-                            <td>{{ t.from }}</td>
-                            <td>{{ t.to }}</td>
-                            <td class="amount">${{ "{:,.2f}".format(t.amount) }}</td>
-                            <td>{{ t.purpose }}</td>
-                            <td><span class="badge flagged">Flagged for Review</span></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        {% endif %}
-
-        {# Past Transactions: Only show for OLD accounts (2023, 2024, or 2025 join year) #}
-        {% if user.date_joined is defined and (user.date_joined.startswith('2023') or user.date_joined.startswith('2024') or user.date_joined.startswith('2025')) %}
-            <div class="transactions-card">
-                <h2>Past Transactions</h2>
-
-                {% set demo_transactions = [
-                    {"date": "2025-09-28", "from": "BlueOakHQ", "to": user.username, "amount": 350000, "purpose": "Project Bonus", "type": "credit"},
-                    {"date": "2025-09-10", "from": user.username, "to": "Gulf Imports", "amount": 210000, "purpose": "Business Supplies", "type": "debit"},
-                    {"date": "2025-09-01", "from": "Sunrise Holdings", "to": user.username, "amount": 180000, "purpose": "Partnership Income", "type": "credit"},
-                    {"date": "2025-08-25", "from": user.username, "to": "LogiPay Freight", "amount": 165000, "purpose": "Shipping Fees", "type": "debit"},
-                    {"date": "2025-08-14", "from": "NexaTech Ltd", "to": user.username, "amount": 220000, "purpose": "Contract Payment", "type": "credit"},
-                    {"date": "2025-08-02", "from": user.username, "to": "Skyline Realty", "amount": 295000, "purpose": "Office Lease", "type": "debit"},
-                    {"date": "2025-07-21", "from": "BlueWave Energy", "to": user.username, "amount": 180000, "purpose": "Dividend", "type": "credit"},
-                    {"date": "2025-07-15", "from": user.username, "to": "Oceanic Bank", "amount": 90000, "purpose": "Loan Repayment", "type": "debit"},
-                    {"date": "2025-07-05", "from": "BlueOakHQ", "to": user.username, "amount": 250000, "purpose": "Performance Payout", "type": "credit"},
-                    {"date": "2025-07-01", "from": user.username, "to": "TechPro Systems", "amount": 95000, "purpose": "Equipment Purchase", "type": "debit"}
-                ] %}
-
-                <div class="table-wrapper">
-                    <table class="transactions-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Amount</th>
-                                <th>Purpose</th>
-                                <th>Type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for t in demo_transactions %}
-                            <tr class="{{ 'credit-row' if t.type == 'credit' else 'debit-row' }}">
-                                <td>{{ t.date }}</td>
-                                <td>{{ t.from }}</td>
-                                <td>{{ t.to }}</td>
-                                <td class="amount">${{ "{:,.2f}".format(t.amount) }}</td>
-                                <td>{{ t.purpose }}</td>
-                                <td>
-                                    {% if t.type == 'credit' %}
-                                    <span class="badge credit">Credit</span>
-                                    {% else %}
-                                    <span class="badge debit">Debit</span>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        {% endif %}
-    </section>
+<div class="page-head reveal">
+  <h1>Transaction history</h1>
+  <p class="subtitle">Complete record of activity on account {{ user.account_number }}</p>
+  <a href="{{ url_for('dashboard') }}" class="btn-back">&larr; Back to dashboard</a>
 </div>
-{% endblock %}
 
-{% block styles %}
-<style>
-body {
-  background: #f4f7fb;
-  color: #1c2b36;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  overflow-x: hidden;
-}
+{% if flagged %}
+<div class="notice reveal" style="--d:60ms">
+  <span aria-hidden="true">&#9888;</span>
+  <span>
+    {{ flagged | length }} transaction{{ 's' if flagged | length != 1 else '' }}
+    {{ 'are' if flagged | length != 1 else 'is' }} held for review because the recipient
+    account could not be matched.
+    <a href="{{ url_for('contact') }}">Contact support</a> to verify.
+  </span>
+</div>
+{% endif %}
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #072c50;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
+<section class="panel reveal" style="--d:120ms">
+  <div class="panel-head">
+    <h2>Completed</h2>
+    <span class="count">{{ normal | length }} record{{ 's' if normal | length != 1 else '' }}</span>
+  </div>
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #072c50;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 14px;
-  z-index: 1000;
-}
+  {% if normal %}
+  <div class="table-wrapper">
+    <table class="ledger">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Date</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Purpose</th>
+          <th scope="col" class="amount">Amount</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in normal %}
+        {% set is_credit = t.to == user.username %}
+        <tr class="{{ 'credit-row' if is_credit else 'debit-row' }}">
+          <td class="dir-cell"><span class="dir" aria-hidden="true">{{ '↓' if is_credit else '↑' }}</span></td>
+          <td class="date" data-label="Date">{{ t.timestamp[:16] }}</td>
+          <td class="party" data-label="From">{{ t.from }}</td>
+          <td class="party" data-label="To">{{ t.to }}</td>
+          <td class="purpose" data-label="Purpose">{{ t.purpose or '—' }}</td>
+          <td class="amount" data-label="Amount">{{ "{:,.2f}".format(t.amount) }}</td>
+          <td data-label="Status"><span class="badge completed">Completed</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+    </svg>
+    <p>No completed transactions</p>
+    <p class="sub">Once a transfer settles it will be listed here.</p>
+  </div>
+  {% endif %}
+</section>
 
-.transactions-page {
-  max-width: 1100px;
-  margin: 100px auto 70px auto;
-  padding: 0 20px;
-}
+{% if flagged %}
+<section class="panel reveal" style="--d:200ms">
+  <div class="panel-head">
+    <h2>Held for review</h2>
+    <span class="count">{{ flagged | length }} record{{ 's' if flagged | length != 1 else '' }}</span>
+  </div>
 
-.header-section {
-  text-align: center;
-  margin-bottom: 30px;
-}
+  <div class="table-wrapper">
+    <table class="ledger">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Purpose</th>
+          <th scope="col" class="amount">Amount</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in flagged %}
+        <tr>
+          <td class="date" data-label="Date">{{ t.timestamp[:16] }}</td>
+          <td class="party" data-label="From">{{ t.from }}</td>
+          <td class="party" data-label="To">{{ t.to }}</td>
+          <td class="purpose" data-label="Purpose">{{ t.purpose or '—' }}</td>
+          <td class="amount" data-label="Amount">{{ "{:,.2f}".format(t.amount) }}</td>
+          <td data-label="Status"><span class="badge flagged">Under review</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
 
-.page-logo {
-  width: 120px;
-  margin-bottom: 15px;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px;
-  white-space: nowrap;
-}
-
-.transactions-table th, .transactions-table td {
-  padding: 12px 10px;
-  border-bottom: 1px solid #e6e6e6;
-  text-align: left;
-}
-
-.transactions-card {
-  background: white;
-  border-radius: 14px;
-  padding: 30px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  margin-bottom: 30px;
-}
-
-@media (max-width: 768px) {
-  .transactions-page {
-    margin: 90px auto 70px auto;
-    padding: 0 10px;
-  }
-
-  .transactions-card {
-    padding: 15px;
-  }
-
-  .table-wrapper {
-    overflow-x: auto;
-  }
-
-  .transactions-table {
-    display: block;
-  }
-}
-</style>
 {% endblock %}

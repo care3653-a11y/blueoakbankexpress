@@ -1,39 +1,51 @@
 {% extends "base.html" %}
-{% block title %}About Us — Blue Oak Express Bank{% endblock %}
+{% block title %}About — Blue Oak Express Bank{% endblock %}
+
 {% block content %}
+<div class="medium">
 
-<div class="text-center mb-5">
-  <h2 class="fw-bold">Blue Oak Express Bank</h2>
-  <p class="text-muted">Private Banking for Distinguished Clients</p>
-</div>
-
-<div class="card shadow-lg border-0 bg-dark text-white">
-  <div class="card-body p-4">
-    <h4 class="fw-light">Our Legacy</h4>
-    <p>
-      Founded on a tradition of excellence and discretion, Blue Oak Express Bank was conceived to redefine the essence of private banking. 
-      For decades, we have stood as a pillar of stability and trust, offering our clients not merely financial services, 
-      but a lasting partnership built upon respect, confidentiality, and vision. Every relationship is nurtured with the 
-      understanding that true wealth transcends numbers—it lies in peace of mind, heritage, and timeless value.
-    </p>
-
-    <h4 class="fw-light mt-4">Our Commitment</h4>
-    <p>
-      We are steadfast in our dedication to integrity, precision, and bespoke service. 
-      Every portfolio, every transaction, and every conversation is managed with the utmost confidentiality and care. 
-      Our advisors blend world-class financial acumen with a deep appreciation of our clients’ individuality—crafting solutions 
-      that not only preserve wealth but elevate it. With cutting-edge digital infrastructure and personalized guidance, 
-      we ensure your banking experience is as seamless as it is secure.
-    </p>
-
-    <h4 class="fw-light mt-4">Our Clients</h4>
-    <p>
-      Our clients represent a select circle of individuals and institutions who seek more than traditional banking—they seek 
-      discretion, foresight, and a relationship anchored in excellence. Whether managing complex international holdings or 
-      cultivating generational prosperity, we offer the clarity and exclusivity that define true private banking. 
-      To be a Blue Oak Express Bank client is to belong to a legacy of refinement and confidence in the art of finance.
-    </p>
+  <div class="page-head reveal">
+    <img src="{{ url_for('static', filename='image/logo.png') }}" alt="" class="page-logo">
+    <h1>About this project</h1>
+    <p class="subtitle">Blue Oak Express Bank is a demonstration build</p>
   </div>
-</div>
 
+  <section class="panel prose reveal" style="--d:80ms">
+    <h3>What this is</h3>
+    <p>
+      Blue Oak Express Bank is a fictional institution built to demonstrate a complete
+      retail banking interface: authentication, account overview, transfers between
+      accounts, and a full transaction ledger. It is not a bank, it holds no money, and
+      it is not affiliated with any real financial institution. Every account, balance,
+      card and transfer you can see here is invented test data.
+    </p>
+
+    <h3>How it works</h3>
+    <p>
+      The application runs on Flask with server-rendered Jinja templates. Accounts and
+      transactions persist to flat JSON files rather than a database, which keeps the
+      project easy to clone and run without setup. Passwords are stored as Werkzeug
+      scrypt hashes. Transfers debit the sender, credit the recipient, and append an
+      immutable entry to the ledger; when a recipient cannot be matched, the transfer is
+      held for review rather than silently completed.
+    </p>
+
+    <h3>Design</h3>
+    <p>
+      The interface takes its cues from the visual language of traditional banking rather
+      than contemporary fintech — engine-turned guilloché line work of the kind engraved on
+      banknotes and share certificates, statement rules, and tabular figures set in a
+      monospaced face so that columns of numbers align the way they do on a printed
+      statement. The type pairs Spectral for display with IBM Plex Sans and IBM Plex Mono.
+    </p>
+
+    <h3>Running it locally</h3>
+    <p>
+      Install the requirements, then run <span class="mono">python app.py</span> and open
+      <span class="mono">localhost:5000</span>. Seeded accounts live in
+      <span class="mono">users.json</span>; <span class="mono">create_users.py</span> will
+      regenerate them with fresh password hashes.
+    </p>
+  </section>
+</div>
 {% endblock %}

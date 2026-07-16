@@ -1,71 +1,70 @@
 {% extends "base.html" %}
-{% block title %}Send Money{% endblock %}
+{% block title %}Send money — Blue Oak Express Bank{% endblock %}
+
 {% block content %}
-<div class="container mt-5 mb-5">
-  <div class="text-center mb-4">
-    <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Blue Oak Express Bank" class="page-logo">
-    <h2 class="fw-bold text-dark mt-3">Send Money</h2>
-    <p class="text-muted">Fast, secure, and reliable transfers to trusted recipients</p>
+<div class="medium">
+
+  <div class="page-head reveal">
+    <h1>Send money</h1>
+    <p class="subtitle">Transfer to another Blue Oak Express account</p>
+    <a href="{{ url_for('dashboard') }}" class="btn-back">&larr; Back to dashboard</a>
   </div>
 
-  <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+  <section class="certificate reveal" style="--d:80ms; margin-bottom:22px">
+    <div class="guilloche" data-guilloche="certificate"></div>
+    <p class="eyebrow">Available to send</p>
+    <p class="balance" data-countup data-value="{{ user.balance or 0 }}">
+      ${{ "{:,.2f}".format(user.balance or 0) }}
+    </p>
+  </section>
 
+  <div class="panel reveal" style="--d:160ms">
     <form method="POST" id="sendForm">
-      <div class="mb-3">
-        <label class="form-label fw-semibold text-dark">Recipient Name</label>
-        <input type="text" name="recipient" class="form-control modern-input" placeholder="e.g., Empire Trust Partners" required>
+      <div class="field">
+        <label for="recipient">Recipient username</label>
+        <input class="input mono" type="text" id="recipient" name="recipient"
+               placeholder="empiretrust" autocomplete="off" required>
+        <p class="hint">The recipient's Blue Oak Express username, not their display name.</p>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold text-dark">Account Number</label>
-        <input type="text" name="account_number" class="form-control modern-input" placeholder="Enter account number" required>
+      <div class="field">
+        <label for="account_number">Account number</label>
+        <input class="input mono" type="text" id="account_number" name="account_number"
+               inputmode="numeric" placeholder="120948375" autocomplete="off" required>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold text-dark">Routing Number</label>
-        <input type="text" name="routing_number" class="form-control modern-input" placeholder="Enter routing number" required>
+      <div class="field">
+        <label for="routing_number">Routing number</label>
+        <input class="input mono" type="text" id="routing_number" name="routing_number"
+               inputmode="numeric" placeholder="123456789" autocomplete="off" required>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold text-dark">Amount ($)</label>
-        <input type="number" name="amount" class="form-control modern-input" min="1" placeholder="Enter amount" required>
+      <div class="field">
+        <label for="amount">Amount</label>
+        <div class="amount-field">
+          <span class="currency" aria-hidden="true">$</span>
+          <input class="input mono" type="number" id="amount" name="amount"
+                 min="0.01" step="0.01" max="{{ user.balance or 0 }}"
+                 placeholder="0.00" required>
+        </div>
+        <p class="hint">Up to ${{ "{:,.2f}".format(user.balance or 0) }}.</p>
       </div>
 
-      <div class="mb-4">
-        <label class="form-label fw-semibold text-dark">Purpose</label>
-        <textarea name="purpose" class="form-control modern-input" rows="3" placeholder="Purpose of payment" required></textarea>
+      <div class="field">
+        <label for="purpose">Purpose</label>
+        <textarea class="input" id="purpose" name="purpose" rows="3"
+                  placeholder="What is this payment for?" required></textarea>
       </div>
 
-      <div class="d-grid">
-        <button type="submit" id="sendBtn" class="btn btn-primary btn-lg fw-bold send-btn">
-          <span id="btnText">Send Money</span>
-          <span id="spinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
-        </button>
-      </div>
+      <button type="submit" class="btn btn-gilt btn-block" id="sendBtn">
+        <span id="btnText">Send money</span>
+        <span class="spinner" id="spinner" hidden></span>
+      </button>
     </form>
   </div>
+
+  <p class="hint" style="text-align:center; margin-top:16px">
+    Demo transfer — no money moves and no real account is contacted.
+  </p>
 </div>
-
-<script>
-  const sendForm = document.getElementById("sendForm");
-  const sendBtn = document.getElementById("sendBtn");
-  const spinner = document.getElementById("spinner");
-  const btnText = document.getElementById("btnText");
-
-  sendForm.addEventListener("submit", () => {
-    sendBtn.disabled = true;
-    spinner.style.display = "inline-block";
-    btnText.textContent = "Processing...";
-  });
-</script>
 {% endblock %}

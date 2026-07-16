@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% block title %}Page not found — Blue Oak Express Bank{% endblock %}
+
 {% block content %}
-<div class="text-center py-5">
-  <h1 class="display-4 fw-bold text-danger">404</h1>
-  <p class="lead text-muted">The page you’re looking for doesn’t exist or has been moved.</p>
-  <a href="{{ url_for('dashboard') }}" class="btn btn-primary mt-3">Return to Dashboard</a>
+<div class="narrow">
+  <div class="panel reveal" style="text-align:center; padding:48px 28px">
+    <p class="eyebrow">Error 404</p>
+    <h1 style="margin-bottom:8px">This page doesn't exist</h1>
+    <p class="subtitle" style="margin-bottom:24px">
+      The link may be out of date, or the page may have moved.
+    </p>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to dashboard</a>
+  </div>
 </div>
 {% endblock %}

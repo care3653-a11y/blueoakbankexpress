@@ -1,23 +1,111 @@
 {% extends "base.html" %}
+{% block title %}Sign in — Blue Oak Express Bank{% endblock %}
+
+{% block body_class %}auth-page{% endblock %}
+
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-4">
-    <div class="card shadow-lg border-0">
-      <div class="card-body">
-        <h4 class="text-center mb-4 fw-bold">Blue Oak Express Bank Login</h4>
-        <form method="POST" action="{{ url_for('login') }}">
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" required>
+<div class="auth">
+
+  <div class="auth-head reveal">
+    <img src="{{ url_for('static', filename='image/logo.png') }}" alt="" class="page-logo">
+    <h1>Blue Oak Express</h1>
+    <p class="subtitle">Private banking, by invitation</p>
+  </div>
+
+  <div class="panel auth-panel reveal" style="--d:100ms">
+
+    <!-- Segmented control -->
+    <div class="segmented" role="tablist" aria-label="Sign in or request access">
+      <span class="segmented-thumb" aria-hidden="true"></span>
+      <button class="seg" role="tab" id="tab-signin"
+              aria-controls="panel-signin" aria-selected="true" type="button">
+        Sign in
+      </button>
+      <button class="seg" role="tab" id="tab-signup"
+              aria-controls="panel-signup" aria-selected="false" type="button">
+        Sign up
+      </button>
+    </div>
+
+    <!-- SIGN IN -->
+    <div class="auth-pane" id="panel-signin" role="tabpanel" aria-labelledby="tab-signin">
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="field">
+          <label for="username">Username or email</label>
+          <input class="input" type="text" id="username" name="username"
+                 autocomplete="username" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-field">
+            <input class="input" type="password" id="password" name="password"
+                   autocomplete="current-password" required>
+            <button class="pw-toggle" type="button" id="pwToggle"
+                    aria-label="Show password" aria-pressed="false">
+              <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Sign In</button>
-        </form>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </form>
+    </div>
+
+    <!-- SIGN UP — gated -->
+    <div class="auth-pane" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup" hidden>
+
+      <div class="gate">
+        <span class="gate-seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="11" width="16" height="10" rx="2"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          </svg>
+        </span>
+        <div>
+          <p class="gate-title">Registration is closed</p>
+          <p class="gate-body">
+            Blue Oak Express does not open accounts on request. Accounts are created
+            by the bank and credentials are issued directly to the account holder.
+          </p>
+        </div>
       </div>
+
+      <form method="POST" action="{{ url_for('request_invite') }}">
+        <div class="field">
+          <label for="inv-name">Full name</label>
+          <input class="input" type="text" id="inv-name" name="name"
+                 autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="inv-email">Email</label>
+          <input class="input" type="email" id="inv-email" name="email"
+                 placeholder="name@example.com" autocomplete="email" required>
+        </div>
+
+        <button type="submit" class="btn btn-gilt btn-block">Request an invitation</button>
+      </form>
+
+      <p class="hint gate-note">
+        This is a portfolio demo, so no invitation is ever actually issued —
+        requests are written to <span class="mono">messages.json</span> and go nowhere.
+        Use a seeded account from <span class="mono">users.json</span> to sign in.
+      </p>
     </div>
   </div>
+
+  <p class="auth-foot reveal" style="--d:200ms">
+    Fictional institution. No real accounts, no real money.
+  </p>
 </div>
 {% endblock %}
