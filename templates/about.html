@@ -13,38 +13,40 @@
   <section class="panel prose reveal" style="--d:80ms">
     <h3>What this is</h3>
     <p>
-      Blue Oak Express Bank is a fictional institution built to demonstrate a complete
-      retail banking interface: authentication, account overview, transfers between
-      accounts, and a full transaction ledger. It is not a bank, it holds no money, and
-      it is not affiliated with any real financial institution. Every account, balance,
-      card and transfer you can see here is invented test data.
+      Blue Oak Express is an exclusive private bank dedicated to delivering personalized wealth management
+      and seamless banking experiences for high-net-worth individuals and families.
+      Founded on the principles of discretion, innovation, and unwavering trust,
+      we combine traditional private banking excellence with cutting-edge digital tools
+      to provide our clients with complete control over their financial lives — anytime, anywhere.  
+
+   </p>
+
+    <h3>Our Mission</h3>
+    <p>
+     At Blue Oak Express, our goal is to redefine private banking by creating a seamless bridge between 
+      timeless wealth preservation and modern financial innovation. We exist to empower a select group of
+     clients with the confidence that their wealth is protected, grown, and managed with absolute discretion
+     and unmatched expertise. Every decision we make is guided by a single objective: to deliver lasting financial
+      security and peace of mind for generations to come.
+
     </p>
 
-    <h3>How it works</h3>
+    <h3>Our Approach</h3>
     <p>
-      The application runs on Flask with server-rendered Jinja templates. Accounts and
-      transactions persist to flat JSON files rather than a database, which keeps the
-      project easy to clone and run without setup. Passwords are stored as Werkzeug
-      scrypt hashes. Transfers debit the sender, credit the recipient, and append an
-      immutable entry to the ledger; when a recipient cannot be matched, the transfer is
-      held for review rather than silently completed.
+      We work differently. Each client is assigned a dedicated private banker who acts as a true partner — not just an advisor.
+      Through our secure digital platform and personal relationship teams, we deliver proactive, tailored strategies that span 
+      investment management, estate planning, liquidity solutions, and global wealth structuring. Our process is collaborative, 
+      transparent where it matters, and fiercely protective of your privacy at every step.
+
     </p>
 
-    <h3>Design</h3>
+    <h3>Commitment</h3>
     <p>
-      The interface takes its cues from the visual language of traditional banking rather
-      than contemporary fintech — engine-turned guilloché line work of the kind engraved on
-      banknotes and share certificates, statement rules, and tabular figures set in a
-      monospaced face so that columns of numbers align the way they do on a printed
-      statement. The type pairs Spectral for display with IBM Plex Sans and IBM Plex Mono.
-    </p>
+     Integrity, excellence, and trust form the foundation of everything we do at Blue Oak Express. We are committed to the highest
+     standards of ethical conduct, technological security, and personalized service. By maintaining an invitation-only community of 
+     clients and partners, we foster an environment where relationships are built on mutual respect and shared values — ensuring that 
+     your wealth is handled with the care and sophistication it deserves.
 
-    <h3>Running it locally</h3>
-    <p>
-      Install the requirements, then run <span class="mono">python app.py</span> and open
-      <span class="mono">localhost:5000</span>. Seeded accounts live in
-      <span class="mono">users.json</span>; <span class="mono">create_users.py</span> will
-      regenerate them with fresh password hashes.
     </p>
   </section>
 </div>
