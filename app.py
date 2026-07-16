@@ -336,6 +336,30 @@ def contact():
 
     return render_template("contact.html")
 
+@app.route("/request-invite", methods=["POST"])
+def request_invite():
+    """Registration is closed — this records an interest request instead."""
+    name = request.form.get("name", "").strip()
+    email = request.form.get("email", "").strip()
+
+    if not name or not email:
+        flash("Enter your name and email to request an invitation.", "danger")
+        return redirect(url_for("login") + "#signup")
+
+    messages = load_json(MESSAGES_FILE)
+    messages.insert(0, {
+        "name": name,
+        "email": email,
+        "message": "Invitation request",
+        "kind": "invite_request",
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    })
+    save_json(MESSAGES_FILE, messages)
+
+    flash("Request received. Invitations are reviewed before an account is opened.", "success")
+    return redirect(url_for("login") + "#signup")
+
+
 if __name__ == "__main__":
     ensure_files()
     app.run(host="0.0.0.0", port=5000, debug=True)
